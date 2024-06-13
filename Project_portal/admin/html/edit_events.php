@@ -1,0 +1,137 @@
+<?php
+include "conn.php";
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel="stylesheet" href="../css/style.css">
+  </head>
+
+  <body  text="white" >
+
+<div style="background-image:linear-gradient(rgb(87, 3, 3,0.9),rgba(255, 230, 4,0.7))">              
+<div class="col-12">
+<div style="padding-left:2%;width:100%;">
+ <center> <h1 style="padding-top: 10px;color: orange;">Edit Events</h1>   
+ 
+ <br/>
+ <br/>
+
+ <form action="updateevent.php" method="post">
+Event name:
+<?php
+$sql = "SELECT * FROM event";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+  echo '<select name="ename" class="smalltext">';
+    while($row = $result->fetch_assoc()) {
+		
+        echo '<option value="'.$row["event_name"].'">'.$row["event_name"].'</option>';
+    }
+} else {
+    echo "0 results";
+}
+
+?>
+
+
+
+</select>
+<label style="margin-left: 50px;"> Type :</label><select name="type" required class="smalltext">
+  <option value="indoor">Indoor</option>
+  <option value="outoor">Outdoor</option>
+
+</select><br><br>
+
+
+
+<label style="margin-left: 55px;" >Category :</label> <select name="category" required class="smalltext" style="margin-right: 50px;">
+  <option value="single">Single</option>
+  <option value="double">Double</option>
+  <option value="team">Team</option>
+
+</select>
+
+Gender : <select name="gender" required class="smalltext" style="margin-right: 50px;">
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+  <option value="both">Both</option>
+  </select>
+
+<br/><br/>
+<label>Description & Rules :</label>
+<br/>
+ <textarea rows="4" cols="10"  name="description" required class="bigtext"></textarea>
+<br><br>
+  Register Date:  
+<input type="date" name="start_date" required class="smalltext" style="margin-right: 50px;">
+  End Date:  
+<input type="date" name="end_date" required class="smalltext"><br><br>
+Event Time:  
+<input type="time" name="time" required class="smalltext" style="margin-right: 50px;">
+
+
+ Certificate  : <select name="certificate" required class="smalltext" >
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+
+</select><br><br>
+
+
+
+faculty  Co-ordinatore Name  : 
+<input type="text" name="oname" required class="smalltext" style=" margin-right: 20px; ">
+
+Student Co-ordinatore Name  : 
+<input type="text" name="sname" required class="smalltext">
+
+
+</br>
+
+
+faculty  Co-ordinatore Number: 
+<input type="text" name="onumber" required class="smalltext"  style=" margin-right: 20px; ">
+
+Student Co-ordinatore Number: 
+<input type="text" name="snumber" required class="smalltext" >
+
+
+
+
+</br>
+faculty  Co-ordinatore Location: 
+<input type="text" name="olocation" required class="smalltext" style="  margin-right: 11%;">
+
+
+Event location: 
+<input type="text" name="elocation" required class="smalltext" >
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+
+
+<center><input type="submit"     style="border-style: solid;border-color: orangered;background-color: orange;color: black;border-radius: 10px 40px; padding: 10px 40px;"value="Submit"></center>
+<br/>
+<br/>
+<br/>
+
+</form></center> 
+  
+</div>
+
+
+</div>
+
+
+</div>
+</div>
+
+
+</body>
+</html>
